@@ -1,42 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>LRU Cache Visualizer</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LRU Cache Visualizer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
-<body>
-  <div class="container">
-    <h2>LRU Cache Visualizer</h2>
+    <div class="app-container">
+        <aside class="sidebar">
+            <h2>LRU Cache Visualizer</h2>
+            
+            <div class="control-group">
+                <label>Cache Capacity</label>
+                <div class="input-row">
+                    <input id="capacity" type="number" value="3" min="1">
+                    <button onclick="createCache()" class="btn-primary">Set</button>
+                </div>
+            </div>
 
-    <!-- Capacity -->
-    <div class="controls">
-      <input id="capacity" type="number" placeholder="Cache Capacity">
-      <button onclick="createCache()">Create Cache</button>
+            <hr>
+
+            <div class="control-group">
+                <label>Operations</label>
+                <div class="input-stack">
+                    <input id="key" type="text" placeholder="Key (e.g. 1)">
+                    <input id="value" type="text" placeholder="Value (e.g. 100)">
+                    <div class="button-row">
+                        <button onclick="putKey()" class="btn-put">PUT</button>
+                        <button onclick="getKey()" class="btn-get">GET</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="status-message" class="status-box">
+                Ready to visualize...
+            </div>
+        </aside>
+
+        <main class="visualization-area">
+            <header class="viz-header">
+                <h3>Cache State <span id="capacity-display"></span></h3>
+                <div class="legend">
+                    <span class="legend-item"><span class="dot head"></span> Head (MRU)</span>
+                    <span class="legend-item"><span class="dot tail"></span> Tail (LRU)</span>
+                </div>
+            </header>
+            
+            <div id="cache" class="cache-canvas">
+                <p class="empty-msg">Initialize cache to start</p>
+            </div>
+        </main>
     </div>
 
-    <hr>
-
-    <!-- PUT / GET section -->
-    <div class="actions">
-      <div class="buttons">
-        <button onclick="putKey()">PUT</button>
-        <button onclick="getKey()">GET</button>
-      </div>
-
-      <!-- numbers BELOW buttons -->
-      <div class="inputs">
-        <input id="key" placeholder="Key">
-        <input id="value" placeholder="Value">
-      </div>
-    </div>
-
-    <h3>Cache (MRU → LRU)</h3>
-    <div id="cache" class="cache"></div>
-  </div>
-
-  <script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
 </body>
 </html>
